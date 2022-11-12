@@ -1,0 +1,19 @@
+{% include 'base.html'%}
+{% block content %}
+    {% comment %} {% if user.is_authenticated %} {% endcomment %}
+<div class="container">
+    <br>
+    <h1>Deleting ticket #{{ticket.pk}}</h1>
+    <hr>
+    <form method="POST">
+        {% csrf_token %}    
+        <p>The ticket will be deleted forever.</p>
+        <strong>Are you sure?</strong><br><br>
+        <button class="btn btn-danger">Delete Client</button>
+    </form>
+</div>
+<div class="container">
+    <br>
+    <a class="btn btn-secondary" href="{% url 'ticket_details' ticket.pk %}">Back to ticket</a>
+</div>
+{% endblock %}    

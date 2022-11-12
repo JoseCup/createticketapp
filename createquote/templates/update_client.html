@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% block content %}
+
+    {% comment %} title overwrites base.html title of CreateQuote  {% endcomment %}
+    {% comment %} client.client_name.first_name pulls from USER {% endcomment %}
+    {% if user.is_authenticated %}
+        <h1>Update Client: {{client.client_name.first_name}} 
+        {{client.client_name.last_name}}</h1>
+        <hr>
+        <table>
+        <form method="POST">
+            {% csrf_token %}
+            {% comment %} form.as_p means every field in our form will be surrounded by a <p> tag {% endcomment %}
+            {{ form.as_p }}
+            <button class="btn btn-secondary">Update</button>
+            <br>
+            <br>
+        <a class="btn btn-secondary" href="{% url 'home' %}">Back to home</a>
+        <br>
+<br>
+    {% else %}
+        <p> You do not have permission to do that</p>
+    {% endif %}
+
+{% endblock %}    

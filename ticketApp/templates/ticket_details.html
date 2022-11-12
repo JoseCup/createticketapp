@@ -1,0 +1,22 @@
+{% include 'base.html'%}
+{% block content %}
+
+<div class="container">
+    <h1>Ticket #{{ticket.pk}} Details</h1>  
+    <hr>
+    
+    <p>Title: {{ticket.title|safe}} </p>
+    <p>Description: {{ticket.description|safe}} </p>
+    <p>Created on: {{ticket.created_at}} </p>
+    <p>Updated on: {{ticket.updated_at}} </p>
+
+    <br>
+    <br>
+    <a class="btn btn-primary" href="{% url 'update_ticket' ticket.pk %}">Update Ticket</a>
+    <a class="btn btn-danger" href="{% url 'delete_ticket' ticket.pk %}">Delete Ticket</a>
+</div>
+<div class="container">
+    <br>
+    <a class="btn btn-secondary" href="{% url 'ticket' %}">Back to tickets</a>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+{% block content %}
+    <h1>Clients</h1>
+    <ul>
+    {% comment %} FIX: Show only clients and detail will list all their projects     {% endcomment %}
+    {% for client in object_list %}
+        <li><a href="{% url 'client_detail' client.pk %}">
+            {{ client.client_name.first_name }} {{ client.client_name.last_name }}</a> - 
+                {% if user.is_authenticated %}                
+                    <small>
+                        <a href="{% url 'update_client' client.pk %}">(Edit)</a>
+                        
+                        <a href="{% url 'delete_client' client.pk %}">(Delete)</a>
+                    </small><br>
+                {% endif %}
+            {{ client.company }}
+        </li>
+    {% endfor %}
+    <ul>
+
+{% endblock %}    

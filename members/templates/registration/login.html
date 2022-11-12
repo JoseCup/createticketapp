@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+
+{% comment %} title overwrites base.html title of CreateQuote  {% endcomment %}
+{% comment %} We do not need a logout page - django.contrib.auth.urls handlesthe logout.html {% endcomment %}
+<h1>Login</h1>
+<div class="form-group">
+    {% comment %} Do not close the <form> tag {% endcomment %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary">Login</button>
+    </div>
+    <br>
+<div>
+    <a class="btn btn-secondary" href="{% url 'home' %}">Back to home</a>
+</div>
+{% endblock %}    

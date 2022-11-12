@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+{% block title %}{{ client.client_name.first_name }} {{ client.client_name.last_name }}{% endblock %}
+
+{% block content %}
+
+
+    <h1>Client Details: {{ client.client_name.first_name }} {{ client.client_name.last_name }} </h1>  
+    {% comment %} {% if user.is_authenticated %} 
+    {% if user.id == client.client_name.id %} {% endcomment %}
+    <small>
+        <a href="{% url 'update_client' client.pk %}">(Edit)</a>
+        <a href="{% url 'delete_client' client.pk %}">(Delete)</a>
+    </small>
+    {% comment %} {% endif%}
+    {% endif %}  {% endcomment %}
+
+    <hr>
+
+    {% if not client.projects.all %}
+        <p>No projects</p>
+    {% else %}
+        <h3>Projects</h3>
+    {% for project in client.projects.all %}
+        <li><a href="{% url 'project_detail' project.pk %}">{{ project.project_name }}</a></li>
+    {% endfor %}
+    
+    {% endif %}
+    <br>
+    <a class="btn btn-secondary" href="{% url 'add_project' %}">Add project</a>
+    <br>
+    <br>
+
+    <p>Phone: {{client.phone}} </p>
+    <p>Email: {{client.email}} </p>
+    <p>Location: {{client.location}} </p>
+    <p>Customer Since: {{client.client_date}} </p>
+    <a class="btn btn-secondary" href="{% url 'home' %}">Back to home</a>
+    <br>
+    <br>
+{% endblock %}
