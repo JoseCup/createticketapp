@@ -25,6 +25,10 @@ class Ticket(models.Model):
 
     class Meta:
             ordering = ['title']
+            permissions = [
+                ("change_ticket_status", "Can change the status of a ticket"),
+                ("close_ticket", "Can close a ticket by changing its status as Done"),
+            ]
         
     def __str__(self):
             return self.title

@@ -1,19 +1,20 @@
 {% extends 'base.html'%}
 {% block content %}
     {% if user.email == 'tony@createdevcrew.com' %} 
-        <h1>Clients</h1>
+        <h1>Hello, Admin</h1>
+        <h2>Companies</h2>
         <ul>
         {% comment %} FIX: Show only clients and detail will list all their projects     {% endcomment %}
-        {% for client in object_list %}
-            <li><a href="{% url 'client_detail' client.pk %}">
-                {{ client.client_name.first_name }} {{ client.client_name.last_name }}</a> - 
+        {% for company in object_list %}
+            <li><a href="{% url 'company_detail' company.pk %}">
+                {{ company.user_company.first_name }} {{ client.user_company.last_name }}</a> - 
                                 
                         <small>
-                            <a href="{% url 'update_client' client.pk %}">(Edit)</a>
+                            <a href="{% url 'update_company' company.pk %}">(Edit)</a>
                             
-                            <a href="{% url 'delete_client' client.pk %}">(Delete)</a>
+                            <a href="{% url 'delete_company' company.pk %}">(Delete)</a>
                         </small><br>
-                {{ client.company }}
+                
             </li>
         {% endfor %}
         <ul>
@@ -31,16 +32,17 @@
         ------------ Update staff listings (Ticket #1)
         ------------ Change body font size to 16px (Ticket #2)
         {% endcomment %}
-        <h1>Client Details: {{ user.first_name }} {{ user.email }} </h1>  
-        {% for client in object_list %}
-          <a href="{% url 'client_detail' client.pk %}">
-                {% if  client.client_name.email ==  user.email %}
+        <h1>Hello, {{ user.first_name }} 
+        <h2>My Companies: </h2>  
+        {% for company in object_list %}
+          <a href="{% url 'company_detail' company.pk %}">
+                {% if  company.user_company.email ==  user.email %}
                     match
                 {% endif %}
         {% endfor %}
             {% comment %} {% if client.email == user.email%}
                 <li><a href="{% url 'client_detail' client.pk %}">
-                    {{ client.client_name.first_name }} {{ client.client_name.last_name }}</a> - 
+                    {{ client.user_company.first_name }} {{ client.user_company.last_name }}</a> - 
                                     
                             <small>
                                 <a href="{% url 'update_client' client.pk %}">(Edit)</a>

@@ -9,6 +9,7 @@ class Company(models.Model):
 
     # Change client_name to user_company
     user_company = models.ForeignKey(User, on_delete=models.CASCADE)
+    company_name = models.CharField(max_length=24, default='A Simple Company')
     email = models.EmailField(max_length = 25)
     location = models.CharField(max_length = 200)
     phone = models.CharField(max_length=15, null=True, blank=False)
@@ -16,7 +17,7 @@ class Company(models.Model):
     company_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.user_company.first_name) 
+        return str(self.company_name) 
     
     # target 'client_detail' path from urls.py after creating something in our model
     # args take us to new client_detail page with self.id

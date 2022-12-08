@@ -4,25 +4,23 @@ from .models import Company, Project
 class CompanyForm(forms.ModelForm):
     class Meta:
         model = Company
-        fields = ('user_company', 'email', 'location', 'phone', 'company')
+        fields = ('user_company', 'email', 'location', 'phone')
         widgets = {
             'user_company': forms.Select(attrs={'class': 'form-control'}),
             'email': forms.TextInput(attrs={'class': 'form-control'}),
             'location': forms.TextInput(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
-            'company': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 class EditCompanyForm(forms.ModelForm):
     class Meta:
         model = Company
-        fields = ( 'email', 'location', 'phone', 'company')
+        fields = ( 'email', 'location', 'phone')
         widgets = {
-            # Do not allow edit form to modify Company
+            # Do not allow edit form to modify user_company
             'email': forms.TextInput(attrs={'class': 'form-control'}),
             'location': forms.TextInput(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
-            'company': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 class ProjectForm(forms.ModelForm):
