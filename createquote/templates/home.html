@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {% block content %}
-    {% if user.is_authenticated %} 
+    {% if user.email == 'tony@createdevcrew.com' %} 
         <h1>Clients</h1>
         <ul>
         {% comment %} FIX: Show only clients and detail will list all their projects     {% endcomment %}
@@ -17,9 +17,52 @@
             </li>
         {% endfor %}
         <ul>
+    {% elif user.is_authenticated %}
+        {% comment %} Show user's accounts e.g. user adam has accounts for tonyctech and cdc 
+        Adam
+        ----SportsMemphis (Account)
+        --------Web app (Project)
+        ------------ Update staff listings (Ticket)
+        --------Mobile App (Project)
+        ------------integrate with iOS (Ticket)
+        
+        ----SportsCollierville (Account)
+        --------Web app (Project)
+        ------------ Update staff listings (Ticket #1)
+        ------------ Change body font size to 16px (Ticket #2)
+        {% endcomment %}
+        <h1>Client Details: {{ user.first_name }} {{ user.email }} </h1>  
+        {% for client in object_list %}
+          <a href="{% url 'client_detail' client.pk %}">
+                {% if  client.client_name.email ==  user.email %}
+                    match
+                {% endif %}
+        {% endfor %}
+            {% comment %} {% if client.email == user.email%}
+                <li><a href="{% url 'client_detail' client.pk %}">
+                    {{ client.client_name.first_name }} {{ client.client_name.last_name }}</a> - 
+                                    
+                            <small>
+                                <a href="{% url 'update_client' client.pk %}">(Edit)</a>
+                                
+                                <a href="{% url 'delete_client' client.pk %}">(Delete)</a>
+                            </small><br>
+                    {{ client.company }}
+                </li>
+            {% endif %} {% endcomment %}
+
     {% else %}
-            <p>Hello Guest</p>
-            
+            <h1>Hello Guest</h1>
+            <p>Request for Account Initialization <a href="#">here.</a></p>
+            <p>Register a new account or login to your existing account.</p>
+            <p><b>Purpose:</b> This web app serves as a communication nexus for clients and employees of CreateDev. This app allows 
+            for a streamlined communication experience between clients and our crew. As an employee, you may request an employee acount promotion
+            after registering your account. Once your account has been upgraded, the employee dashboard interface will update with 
+            tools for taking inquiries and responding to them. Inquiries come in the form of tickets with conversations between the ticket 
+            assignee and the assigner. Each ticket has multiple status options: To Do, In Progress, In Review, Done. Users will be notified when
+            the status of the ticket is updated and when a conversation has been updated. Both parties are updated by conversation updates respectively.
+            Once the ticket is complete or the status is changed to "Done", the ticket and its conversation is closed.</p>
+            <p>Closed ticket conversations are available for reference via downloadable PDF and raw conversation logs.</p>   
     {% endif %}
 
 {% endblock %}    

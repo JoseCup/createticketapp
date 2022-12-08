@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 class Client(models.Model):
+    # Change client_name to username
     client_name = models.ForeignKey(User, on_delete=models.CASCADE)
     email = models.EmailField(max_length = 25)
     location = models.CharField(max_length = 200)
