@@ -2,7 +2,9 @@ from django.db import models
 from django.urls import reverse
 from datetime import datetime, date
 # Need to bind a ticket to a user - multiple people can handle a ticket.
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from django.conf import settings
+User = settings.AUTH_USER_MODEL
 
 
 # Create your models here.

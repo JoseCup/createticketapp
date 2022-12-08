@@ -1,12 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.urls import reverse
+from django.conf import settings
+User = settings.AUTH_USER_MODEL
 
 # User has company has projects has ticket?
 # User has company has ticket
 # change Client to Company
 class Company(models.Model):
-
+    
     # Change client_name to user_company
     user_company = models.ForeignKey(User, on_delete=models.CASCADE)
     company_name = models.CharField(max_length=24, default='A Simple Company')

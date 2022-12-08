@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'createquote',
-    'members',
+    'users',
     'ticketApp',
     
 ]
@@ -124,6 +124,8 @@ LOGOUT_REDIRECT_URL= 'home'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+AUTH_USER_MODEL = 'users.NewUser'
 
 STATIC_URL = '/static/'
 # aws static files
