@@ -1,24 +1,24 @@
 from django import forms
-from .models import Client, Project
+from .models import Company, Project
 
-class ClientForm(forms.ModelForm):
+class CompanyForm(forms.ModelForm):
     class Meta:
-        model = Client
-        fields = ('client_name', 'email', 'location', 'phone', 'company')
+        model = Company
+        fields = ('user_company', 'email', 'location', 'phone', 'company')
         widgets = {
-            'client_name': forms.Select(attrs={'class': 'form-control'}),
+            'user_company': forms.Select(attrs={'class': 'form-control'}),
             'email': forms.TextInput(attrs={'class': 'form-control'}),
             'location': forms.TextInput(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
             'company': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
-class EditClientForm(forms.ModelForm):
+class EditCompanyForm(forms.ModelForm):
     class Meta:
-        model = Client
+        model = Company
         fields = ( 'email', 'location', 'phone', 'company')
         widgets = {
-            # Do not allow edit form to modify client
+            # Do not allow edit form to modify Company
             'email': forms.TextInput(attrs={'class': 'form-control'}),
             'location': forms.TextInput(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),

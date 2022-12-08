@@ -26,7 +26,7 @@ class EditProfileForm(UserChangeForm):
     first_name = forms.CharField(max_length=100, widget = forms.TextInput(attrs={'class': 'form-control'}))
     last_name = forms.CharField(max_length=100, widget = forms.TextInput(attrs={'class': 'form-control'}))
     # username = forms.CharField(max_length=100, widget = forms.TextInput(attrs={'class': 'form-control'}))
-    client_date = forms.CharField(max_length=100, widget = forms.TextInput(attrs={'class': 'form-control'}))
+    company_date = forms.CharField(max_length=100, widget = forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
