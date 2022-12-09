@@ -2,7 +2,9 @@ from django.db import models
 from django.urls import reverse
 from datetime import datetime, date
 # Need to bind a ticket to a user - multiple people can handle a ticket.
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from django.conf import settings
+User = settings.AUTH_USER_MODEL
 
 
 # Create your models here.
@@ -25,6 +27,10 @@ class Ticket(models.Model):
 
     class Meta:
             ordering = ['title']
+            permissions = [
+                ("change_ticket_status", "Can change the status of a ticket"),
+                ("close_ticket", "Can close a ticket by changing its status as Done"),
+            ]
         
     def __str__(self):
             return self.title

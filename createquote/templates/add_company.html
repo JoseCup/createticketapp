@@ -1,13 +1,13 @@
 {% extends 'base.html'%}
 {% block title %}
-Add New Client
+Add New Company
 {% endblock %}
 
 {% block content %}
 
 {% comment %} title overwrites base.html title of CreateQuote  {% endcomment %}
 {% if user.is_authenticated %}
-<h1>Add Client</h1>
+<h1>Add Company</h1>
 <div class="form-group">
     <form method="POST">
         {% csrf_token %}

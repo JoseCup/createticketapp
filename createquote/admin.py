@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Client, Project
+from .models import Company, Project
 # Import Ticket model from ticketApp app from the app registry in createquoteproj settings.py
 from ticketApp.models import Ticket
 
@@ -18,7 +18,7 @@ class TicketAdmin(admin.ModelAdmin):
 #     list_per_page = 50
 #     fields = ['active', 'name', 'qty', 'price', 'discount_price']
 
-admin.site.register(Client)
+admin.site.register(Company)
 admin.site.register(Project)
 # admin.site.register(Order)
 # admin.site.register(OrderItem)
