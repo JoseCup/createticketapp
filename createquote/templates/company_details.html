@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+{% block title %}{{ company.user_company.first_name }} {{ company.user_company.last_name }}{% endblock %}
+
+{% block content %}
+
+
+    <h1>company Details: {{ company.company_name }} </h1>  
+    {% comment %} {% if user.is_authenticated %} 
+    {% if user.id == company.user_company.id %} {% endcomment %}
+    <small>
+        <a href="{% url 'update_company' company.pk %}">(Edit)</a>
+        <a href="{% url 'delete_company' company.pk %}">(Delete)</a>
+    </small>
+    {% comment %} {% endif%}
+    {% endif %}  {% endcomment %}
+
+    <hr>
+
+    {% if not company.projects.all %}
+        <p>No projects</p>
+    {% else %}
+        <h3>Projects</h3>
+    {% for project in company.projects.all %}
+        <li><a href="{% url 'project_detail' project.pk %}">{{ project.project_name }}</a></li>
+    {% endfor %}
+    
+    {% endif %}
+    <br>
+    <a class="btn btn-secondary" href="{% url 'add_project' %}">Add project</a>
+    <br>
+    <br>
+
+    <p>Phone: {{company.phone}} </p>
+    <p>Email: {{company.email}} </p>
+    <p>Location: {{company.location}} </p>
+    <p>Customer Since: {{company.company_date}} </p>
+    <a class="btn btn-secondary" href="{% url 'home' %}">Back to home</a>
+    <br>
+    <br>
+{% endblock %}

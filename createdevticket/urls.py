@@ -19,8 +19,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('createquote.urls')),
-    path('members/', include('django.contrib.auth.urls') ),
-    path('members/', include('members.urls')),
+    path('users/', include('django.contrib.auth.urls') ),
+    path('users/', include('users.urls')),
     path('ticket/', include('ticketApp.urls')),
 
 
