@@ -9,12 +9,11 @@ User = settings.AUTH_USER_MODEL
 class Company(models.Model):
     
     # Change client_name to user_company
-    user_company = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_company = models.ForeignKey("Company", on_delete=models.CASCADE, null=True, blank=True)
     company_name = models.CharField(max_length=24, default='A Simple Company')
     email = models.EmailField(max_length = 25)
     location = models.CharField(max_length = 200)
     phone = models.CharField(max_length=15, null=True, blank=False)
-    # company = models.CharField(max_length=255)
     company_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
