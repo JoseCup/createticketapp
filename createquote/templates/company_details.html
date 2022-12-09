@@ -4,7 +4,7 @@
 {% block content %}
 
 
-    <h1>company Details: {{ company.user_company.first_name }} {{ company.user_company.last_name }} </h1>  
+    <h1>company Details: {{ company.company_name }} </h1>  
     {% comment %} {% if user.is_authenticated %} 
     {% if user.id == company.user_company.id %} {% endcomment %}
     <small>

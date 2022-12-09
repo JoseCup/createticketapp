@@ -7,7 +7,7 @@
         {% comment %} FIX: Show only clients and detail will list all their projects     {% endcomment %}
         {% for company in object_list %}
             <li><a href="{% url 'company_detail' company.pk %}">
-                {{ company.user_company.first_name }} {{ client.user_company.last_name }}</a> - 
+                {{ company.company_name }}</a> - 
                                 
                         <small>
                             <a href="{% url 'update_company' company.pk %}">(Edit)</a>

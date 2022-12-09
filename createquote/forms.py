@@ -4,9 +4,10 @@ from .models import Company, Project
 class CompanyForm(forms.ModelForm):
     class Meta:
         model = Company
-        fields = ('user_company', 'email', 'location', 'phone')
+        fields = ( 'company_name', 'email', 'location', 'phone')
         widgets = {
-            'user_company': forms.Select(attrs={'class': 'form-control'}),
+            # 'user_company': forms.Select(attrs={'class': 'form-control'}),
+            'company_name': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.TextInput(attrs={'class': 'form-control'}),
             'location': forms.TextInput(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
@@ -15,9 +16,10 @@ class CompanyForm(forms.ModelForm):
 class EditCompanyForm(forms.ModelForm):
     class Meta:
         model = Company
-        fields = ( 'email', 'location', 'phone')
+        fields = ( 'company_name', 'email', 'location', 'phone')
         widgets = {
             # Do not allow edit form to modify user_company
+            'company_name': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.TextInput(attrs={'class': 'form-control'}),
             'location': forms.TextInput(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
