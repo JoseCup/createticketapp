@@ -9,7 +9,6 @@
     <p>Description: {{ticket.description|safe}} </p>
     <p>Created on: {{ticket.created_at}} </p>
     <p>Updated on: {{ticket.updated_at}} </p>
-
     <br>
     <br>
     <a class="btn btn-primary" href="{% url 'update_ticket' ticket.pk %}">Update Ticket</a>
@@ -17,6 +16,7 @@
 </div>
 <div class="container">
     <br>
-    <a class="btn btn-secondary" href="{% url 'ticket' %}">Back to tickets</a>
+    <a class="btn btn-secondary" href="{% url 'tickets' %}">Back to tickets</a>
+
 </div>
 {% endblock %}

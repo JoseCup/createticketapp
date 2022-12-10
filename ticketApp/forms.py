@@ -5,8 +5,9 @@ from .models import Ticket
 class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
-        fields = ('title', 'assignee', 'status', 'description')
+        fields = ('ticket_owner', 'title', 'assignee', 'status', 'description')
         widgets = {
+            'ticket_owner': forms.Select(attrs={'class': 'form-control'}),
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'assignee': forms.Select(attrs={'class': 'form-control'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
@@ -27,3 +28,4 @@ class EditTicketForm(forms.ModelForm):
             'created_at': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'created at ', 'type':'date'}),
             'updated_at': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'updated at ', 'type':'date'}),       
         }
+

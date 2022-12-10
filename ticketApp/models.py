@@ -5,8 +5,6 @@ from datetime import datetime, date
 # from django.contrib.auth.models import User
 from django.conf import settings
 User = settings.AUTH_USER_MODEL
-
-
 # Create your models here.
 # Models describe the logic of the app
 
@@ -18,6 +16,7 @@ class TicketStatus(models.TextChoices):
 
 class Ticket(models.Model):
     title = models.CharField(max_length=100)
+    ticket_owner = models.ForeignKey(User, related_name='ticket_owner',null=True, on_delete=models.CASCADE)
     assignee = models.ForeignKey(User, null=True, blank = True, on_delete=models.CASCADE)
     status = models.CharField(max_length=25, choices=TicketStatus.choices, default=TicketStatus.TO_DO)
     description = models.CharField(max_length=255,blank=True, null=True)
@@ -38,5 +37,4 @@ class Ticket(models.Model):
     def get_absolute_url(self):
         # return reverse("client_detail", args=(str(self.id)))
         return reverse("home") # or just go back home
-
 
