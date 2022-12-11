@@ -9,7 +9,7 @@ User = settings.AUTH_USER_MODEL
 class Company(models.Model):
     
     # Change client_name to user_company
-    user_company = models.ForeignKey("Company", on_delete=models.CASCADE, null=True, blank=True)
+    user_company = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     company_name = models.CharField(max_length=24, default='A Simple Company')
     email = models.EmailField(max_length = 25)
     location = models.CharField(max_length = 200)
@@ -39,5 +39,3 @@ class Project(models.Model):
 
     def get_absolute_url(self):
         return reverse("home")
-
-# service

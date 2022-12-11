@@ -20,6 +20,7 @@ class TicketAdmin(admin.ModelAdmin):
 
 admin.site.register(Company)
 admin.site.register(Project)
+
 # admin.site.register(Order)
 # admin.site.register(OrderItem)
 admin.site.register(Ticket, TicketAdmin)

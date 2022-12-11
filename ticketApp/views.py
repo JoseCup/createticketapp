@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 
 class TicketView(ListView):
     model = Ticket
-    template_name = 'ticket.html'
+    template_name = 'tickets.html'
     ordering = ['updated_at'] # most recent clients first
 
 class TicketDetailView(DetailView):
@@ -29,10 +29,11 @@ class TicketUpdateView(UpdateView):
     form_class = EditTicketForm
     template_name = 'update_ticket.html'
     # Go to tickets after update/edit
-    success_url = reverse_lazy('ticket')
+    success_url = reverse_lazy('tickets')
 
 class TicketDeleteView(DeleteView):
     model = Ticket
     template_name = 'delete_ticket.html'
     # Go to tickets after delete
-    success_url = reverse_lazy('ticket')
+    success_url = reverse_lazy('tickets')
+

@@ -1,0 +1,41 @@
+{% include 'base.html' %}
+{% block content %}
+
+
+<div class="container">
+    <h1>Tickets</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Status</th>
+      <th scope="col">Assignee</th>
+      <th scope="col">Created on</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if user.is_authenticated %}
+      <h1>Hello, {{ user.first_name }} 
+      <h2>My tickets: </h2>  
+      {% for ticket in object_list %}
+        {% if ticket.ticket_owner.email == user.email %}
+          <tr>
+            <th scope="row">{{ ticket.pk }}</th>
+            <td><a href="{% url 'ticket_details' ticket.pk %}"> {{ ticket.title|safe }}</a></td>
+            <td>{{ ticket.status }}</td>
+            <td>{{ ticket.assignee }}</td>
+            <td>{{ ticket.created_at }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+</div>
+<br>
+<div class="container">
+<a class="btn btn-primary" href="{% url 'create_ticket' %}">Create a ticket</a>
+
+</div>
+{% endblock %}   
