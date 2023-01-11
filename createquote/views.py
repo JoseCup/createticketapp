@@ -12,6 +12,18 @@ class HomeView(ListView):
     # ordering = ['-Company_date'] # most recent Companys first
     # ordering = ['-id']
 
+def features(request):
+    return render(request, 'features.html')
+
+def about(request):
+    return render(request, 'about.html')
+
+def pricing(request):
+    return render(request, 'pricing.html')
+
+def faq(request):
+    return render(request, 'faq.html')
+
 class CompanyDetailView(DetailView):
     model = Company
     template_name = 'company_details.html'

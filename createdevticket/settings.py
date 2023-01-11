@@ -128,5 +128,6 @@ LOGOUT_REDIRECT_URL= 'home'
 AUTH_USER_MODEL = 'users.NewUser'
 
 STATIC_URL = '/static/'
+
 # aws static files
 STATIC_ROOT = 'static'

@@ -15,12 +15,10 @@ Add New Company
         {{ form.as_p }}
     
     <button class="btn btn-secondary">Add Client</button>
-<div>
     <br>
-<div>
     <a class="btn btn-secondary" href="{% url 'home' %}">Back to home</a>
 </div>
 {% else %}
 You do not have permission to do that. Please login.
 {% endif %}
-{% endblock %}    
+{% endblock %}
