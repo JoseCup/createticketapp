@@ -6,7 +6,6 @@ from .models import Company, Project
 from .forms import CompanyForm, EditCompanyForm, ProjectForm, EditProjectForm
 from django.urls import reverse_lazy
 
-
 class HomeView(ListView):
     model = Company
     template_name = 'home.html'
@@ -17,11 +16,15 @@ class CompanyDetailView(DetailView):
     model = Company
     template_name = 'company_details.html'
 
+
 class AddCompanyView(CreateView):
     model = Company
     # form_class for adding Companys
     form_class = CompanyForm
     template_name = 'add_company.html'
+    def get_initial(self):
+        return {'company_owner': self.request.user}
+
     # fields = '__all__' 
     # CompanyForm takes care of fields
 
@@ -30,6 +33,7 @@ class UpdateCompanyView(UpdateView):
     form_class = EditCompanyForm
     template_name = 'update_company.html'
     # fields = [ 'email', 'phone', 'location','company' ]
+
 
 class DeleteCompanyView(DeleteView):
     # we need a success_url to tell us where to go after deleting a Company
@@ -46,6 +50,8 @@ class AddProjectView(CreateView):
     model = Project
     form_class = ProjectForm
     template_name = 'add_project.html'
+    def get_initial(self):
+        return {'project_owner': self.request.user}
 
 class UpdateProjectView(UpdateView):
     model = Project

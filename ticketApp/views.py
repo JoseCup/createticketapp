@@ -22,6 +22,8 @@ class TicketCreateView(CreateView):
     # Using class-based model form
     form_class = TicketForm
     template_name = 'create_ticket.html'
+    def get_initial(self):
+        return {'ticket_owner': self.request.user}
 
 class TicketUpdateView(UpdateView):
     model = Ticket
@@ -30,6 +32,7 @@ class TicketUpdateView(UpdateView):
     template_name = 'update_ticket.html'
     # Go to tickets after update/edit
     success_url = reverse_lazy('tickets')
+    
 
 class TicketDeleteView(DeleteView):
     model = Ticket

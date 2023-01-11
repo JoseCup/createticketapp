@@ -8,7 +8,7 @@ from .views import ProjectDetailView, AddProjectView, UpdateProjectView, DeleteP
 urlpatterns = [
     # path('', views.home, name='home.html'),
     path('', HomeView.as_view(), name='home'),
-    path('company/<int:pk>', CompanyDetailView.as_view(), name='company_detail'),
+    path('<int:pk>', CompanyDetailView.as_view(), name='company_detail'),
     path('add_company/', AddCompanyView.as_view(), name='add_company'),
     path('company/edit/<int:pk>', UpdateCompanyView.as_view(), name='update_company'),
     path('company/<int:pk>/remove', DeleteCompanyView.as_view(), name='delete_company'),

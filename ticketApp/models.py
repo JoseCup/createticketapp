@@ -1,12 +1,16 @@
 from django.db import models
+from createquote.models import Project
 from django.urls import reverse
 from datetime import datetime, date
 # Need to bind a ticket to a user - multiple people can handle a ticket.
 # from django.contrib.auth.models import User
 from django.conf import settings
 User = settings.AUTH_USER_MODEL
+
 # Create your models here.
 # Models describe the logic of the app
+
+
 
 class TicketStatus(models.TextChoices):
     TO_DO = 'To Do'
@@ -18,11 +22,13 @@ class Ticket(models.Model):
     title = models.CharField(max_length=100)
     ticket_owner = models.ForeignKey(User, related_name='ticket_owner',null=True, on_delete=models.CASCADE)
     assignee = models.ForeignKey(User, null=True, blank = True, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, null=True, on_delete=models.CASCADE)
     status = models.CharField(max_length=25, choices=TicketStatus.choices, default=TicketStatus.TO_DO)
     description = models.CharField(max_length=255,blank=True, null=True)
     # description = models.TextField()
     created_at = models.DateTimeField('created at', auto_now_add=True)
     updated_at = models.DateTimeField('updated at', auto_now=True)
+
 
     class Meta:
             ordering = ['title']
@@ -37,4 +43,3 @@ class Ticket(models.Model):
     def get_absolute_url(self):
         # return reverse("client_detail", args=(str(self.id)))
         return reverse("home") # or just go back home
-

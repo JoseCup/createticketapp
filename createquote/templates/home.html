@@ -22,8 +22,8 @@
         <h2>My Companies: </h2>  
         {% for company in object_list %}
           <a href="{% url 'company_detail' company.pk %}">
-                {% if  company.user_company.email ==  user.email %}
-                    match
+                {% if  company.company_owner.email ==  user.email %}
+                    {{company.company_name}}
                 {% endif %}
         {% endfor %}
 
@@ -37,4 +37,4 @@
             tools for taking inquiries and responding to them. </p>   
     {% endif %}
 
-{% endblock %}    
+{% endblock %}

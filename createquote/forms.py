@@ -1,17 +1,23 @@
 from django import forms
 from .models import Company, Project
+from django.conf import settings
+User = settings.AUTH_USER_MODEL
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class CompanyForm(forms.ModelForm):
+
     class Meta:
         model = Company
-        fields = ( 'company_name', 'email', 'location', 'phone')
+        fields = ( 'company_owner','company_name', 'email', 'location', 'phone')
         widgets = {
-            # 'user_company': forms.Select(attrs={'class': 'form-control'}),
+
+            'company_owner': forms.Select(attrs={'class': 'form-control', 'readonly':'readonly'}),
             'company_name': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.TextInput(attrs={'class': 'form-control'}),
             'location': forms.TextInput(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
 
 class EditCompanyForm(forms.ModelForm):
     class Meta:
