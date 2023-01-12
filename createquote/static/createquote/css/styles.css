@@ -1,0 +1,13 @@
+img {
+    border-shadow: 1 1 black;
+    
+}
+
+.center-hero {
+    width: 65%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}

@@ -2,9 +2,18 @@ from django.shortcuts import render
 # importing generics - list displays list of objects, detail shows one object's details
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 # from models.py
+from rest_framework import generics
+from .serializers import CompanySerializer
 from .models import Company, Project
 from .forms import CompanyForm, EditCompanyForm, ProjectForm, EditProjectForm
 from django.urls import reverse_lazy
+
+
+
+# API View - return all the different companies 
+class CompanyView(generics.ListAPIView):
+    queryset = Company.objects.all()
+    serializer_class = CompanySerializer
 
 class HomeView(ListView):
     model = Company
@@ -23,6 +32,7 @@ def pricing(request):
 
 def faq(request):
     return render(request, 'faq.html')
+
 
 class CompanyDetailView(DetailView):
     model = Company

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'createquote',
     'users',
     'ticketApp',
+    'rest_framework',
     
 ]
 
@@ -127,7 +128,10 @@ LOGOUT_REDIRECT_URL= 'home'
 
 AUTH_USER_MODEL = 'users.NewUser'
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/' 
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+
 
 # aws static files
 STATIC_ROOT = 'static'
