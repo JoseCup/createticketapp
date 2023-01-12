@@ -1,46 +1,36 @@
 from django.db import models
 from django.urls import reverse
+from datetime import datetime, date
 from django.conf import settings
+User = settings.AUTH_USER_MODEL
 
-# User has company has projects has ticket?
-# User has company has ticket
-# change Client to Company
-class Company(models.Model):
-    # Change client_name to user_company
-    company_owner = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        null=True,
-        blank=True,
-        on_delete=models.CASCADE,
-    )    
-    company_name = models.CharField(max_length=24, default='A Simple Company')
-    email = models.EmailField(max_length = 25)
-    location = models.CharField(max_length = 200)
-    phone = models.CharField(max_length=15, null=True, blank=False)
-    company_date = models.DateField(auto_now_add=True)
+class TicketStatus(models.TextChoices):
+    TO_DO = 'To Do'
+    IN_PROGRESS = 'In Progress'
+    IN_REVIEW = 'In Review'
+    DONE = 'Done'
 
+class Ticket(models.Model):
+    title = models.CharField(max_length=100)
+    ticket_owner = models.ForeignKey(User, related_name='ticket_owner',null=True, on_delete=models.CASCADE)
+    assignee = models.ForeignKey(User, null=True, blank = True, on_delete=models.CASCADE)
+    status = models.CharField(max_length=25, choices=TicketStatus.choices, default=TicketStatus.TO_DO)
+    description = models.CharField(max_length=255,blank=True, null=True)
+    # description = models.TextField()
+    created_at = models.DateTimeField('created at', auto_now_add=True)
+    updated_at = models.DateTimeField('updated at', auto_now=True)
+
+
+    class Meta:
+            ordering = ['title']
+            permissions = [
+                ("change_ticket_status", "Can change the status of a ticket"),
+                ("close_ticket", "Can close a ticket by changing its status as Done"),
+            ]
+        
     def __str__(self):
-        return str(self.company_name) 
-    
-    # target 'client_detail' path from urls.py after creating something in our model
-    # args take us to new client_detail page with self.id
+            return self.title
+
     def get_absolute_url(self):
         # return reverse("client_detail", args=(str(self.id)))
         return reverse("home") # or just go back home
-
-
-class Project(models.Model):
-    project_name = models.CharField(max_length = 255)
-    project_owner = models.ForeignKey(Company, related_name="projects", on_delete=models.CASCADE)
-    description = models.TextField()
-    website = models.URLField(max_length=100)
-    budget = models.CharField(max_length=12)
-    start_date = models.DateField()
-    end_date = models.DateField()
-
-    def __str__(self):
-        return self.project_name 
-
-    def get_absolute_url(self):
-        return reverse("home")
-    

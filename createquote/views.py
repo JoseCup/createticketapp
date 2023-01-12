@@ -1,13 +1,12 @@
 from django.shortcuts import render
 # importing generics - list displays list of objects, detail shows one object's details
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-# from models.py
-from .models import Company, Project
-from .forms import CompanyForm, EditCompanyForm, ProjectForm, EditProjectForm
+from .forms import TicketForm, EditTicketForm
+# from .forms import CompanyForm, EditCompanyForm, ProjectForm, EditProjectForm
 from django.urls import reverse_lazy
+from .models import Ticket
 
 class HomeView(ListView):
-    model = Company
     template_name = 'home.html'
     # ordering = ['-Company_date'] # most recent Companys first
     # ordering = ['-id']
@@ -24,53 +23,37 @@ def pricing(request):
 def faq(request):
     return render(request, 'faq.html')
 
-class CompanyDetailView(DetailView):
-    model = Company
-    template_name = 'company_details.html'
 
 
-class AddCompanyView(CreateView):
-    model = Company
-    # form_class for adding Companys
-    form_class = CompanyForm
-    template_name = 'add_company.html'
+class TicketView(ListView):
+    model = Ticket
+    template_name = 'tickets.html'
+    ordering = ['updated_at'] # most recent clients first
+
+class TicketDetailView(DetailView):
+    model = Ticket
+    template_name = 'ticket_details.html'
+
+class TicketCreateView(CreateView):
+    model = Ticket
+    # Using class-based model form
+    form_class = TicketForm
+    template_name = 'create_ticket.html'
     def get_initial(self):
-        return {'company_owner': self.request.user}
+        return {'ticket_owner': self.request.user}
 
-    # fields = '__all__' 
-    # CompanyForm takes care of fields
+class TicketUpdateView(UpdateView):
+    model = Ticket
+    # Using class-based model form
+    form_class = EditTicketForm
+    template_name = 'update_ticket.html'
+    # Go to tickets after update/edit
+    success_url = reverse_lazy('tickets')
+    
 
-class UpdateCompanyView(UpdateView):
-    model = Company
-    form_class = EditCompanyForm
-    template_name = 'update_company.html'
-    # fields = [ 'email', 'phone', 'location','company' ]
+class TicketDeleteView(DeleteView):
+    model = Ticket
+    template_name = 'delete_ticket.html'
+    # Go to tickets after delete
+    success_url = reverse_lazy('tickets')
 
-
-class DeleteCompanyView(DeleteView):
-    # we need a success_url to tell us where to go after deleting a Company
-    # use reverse_lazy for the success_url
-    model = Company
-    template_name = 'delete_company.html'
-    success_url = reverse_lazy('home')
-
-class ProjectDetailView(DetailView):
-    model = Project
-    template_name = 'project_details.html'
-
-class AddProjectView(CreateView):
-    model = Project
-    form_class = ProjectForm
-    template_name = 'add_project.html'
-    def get_initial(self):
-        return {'project_owner': self.request.user}
-
-class UpdateProjectView(UpdateView):
-    model = Project
-    form_class = EditProjectForm
-    template_name = 'update_project.html'
-
-class DeleteProjectView(DeleteView):
-    model = Project
-    template_name = 'delete_project.html'
-    success_url = reverse_lazy('home')
