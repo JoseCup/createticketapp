@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'users',
     'ticketApp',
     'rest_framework',
+    'frontend.apps.FrontendConfig',
     
 ]
 

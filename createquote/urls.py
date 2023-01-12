@@ -9,7 +9,8 @@ from . import views
 
 urlpatterns = [
     # path('', views.home, name='home.html'),
-    path('', HomeView.as_view(), name='home'),
+    # path('', HomeView.as_view(), name='home'),
+    path('', include('frontend.urls')),
     path('features/', views.features, name='feature'),
     path('about/', views.about, name='about'),
     path('pricing/', views.pricing, name='pricing'),
