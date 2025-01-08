@@ -26,7 +26,7 @@ SECRET_KEY = 'dqc5$bfsmd(ny*bo1=oo(jhovsx2v*y_^-6-i!8*6odww65g2t'
 DEBUG = True
 
 # ALLOWED_HOSTS = ['django-env-cdc-cq.eba-unkbaqsh.us-west-2.elasticbeanstalk.com', 'localhost']
-ALLOWED_HOSTS = ['django-cdc-env.eba-fwrzz9mp.us-west-2.elasticbeanstalk.com', 'localhost']
+# ALLOWED_HOSTS = ['django-cdc-env.eba-fwrzz9mp.us-west-2.elasticbeanstalk.com', 'localhost']
 
 
 # Application definition
